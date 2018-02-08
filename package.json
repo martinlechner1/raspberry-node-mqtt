@@ -1,0 +1,40 @@
+{
+  "name": "raspberry-node-mqtt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "tsc": "tsc",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run build:live",
+    "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/index.ts"
+  },
+  "keywords": [
+    "nodejs",
+    "mqtt"
+  ],
+  "author": "Martin Lechner",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/koa": "^2.0.44",
+    "@types/koa-router": "^7.0.27",
+    "@types/mqtt": "^2.5.0",
+    "@types/node": "^8.9.1",
+    "eslint": "^4.17.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "nodemon": "^1.14.12",
+    "prettier": "^1.10.2",
+    "ts-node": "^4.1.0",
+    "tslint": "^5.9.1",
+    "tslint-config-prettier": "^1.7.0",
+    "typescript": "^2.6.1",
+    "typescript-eslint-parser": "^12.0.0"
+  },
+  "dependencies": {
+    "koa": "^2.4.1",
+    "koa-router": "^7.4.0",
+    "mqtt": "^2.15.2"
+  }
+}
