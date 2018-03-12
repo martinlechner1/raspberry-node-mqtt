@@ -19,8 +19,7 @@
   "devDependencies": {
     "@types/koa": "^2.0.44",
     "@types/koa-router": "^7.0.27",
-    "@types/mqtt": "^2.5.0",
-    "@types/node": "^8.9.1",
+    "@types/node": "^8.9.4",
     "nodemon": "^1.14.12",
     "prettier": "^1.10.2",
     "ts-node": "^4.1.0",

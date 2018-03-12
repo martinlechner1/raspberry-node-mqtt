@@ -15,23 +15,40 @@ interface ISensorData {
   pressure: number;
   humidity: number;
 }
-let data: ISensorData = { temp: 0, pressure: 0, humidity: 0 };
+
+interface mqttMessage {
+  sid: string;
+  data: ISensorData;
+}
+
+const state: { [sid: string]: ISensorData } = {};
 
 client.on('connect', () => {
   client.subscribe('sensor');
 });
 
 client.on('message', (topic, message) => {
-  data = JSON.parse(message.toString());
+  const { sid, data } = JSON.parse(message.toString());
+  state[sid] = data;
 });
 
+const buildSensorHtml = (sid: string, data: ISensorData) => {
+  return `
+    <div>
+    <h1>${sid}</h1>
+    <p>Temperatur: ${roundToTwoDecimals(data.temp)} °C</p>
+    <p>Pressure: ${roundToTwoDecimals(data.pressure)} hPa</p>
+    <p>Humidity: ${roundToTwoDecimals(data.humidity)} %</p>
+    </div>
+  `;
+};
+
 router.get('/*', async ctx => {
-  ctx.body = `<html><body><h1>Wohnzimmer</h1>
-  <p>
-   Temperatur: ${roundToTwoDecimals(data.temp)} °C</p>
-   <p>Pressure: ${roundToTwoDecimals(data.pressure)} hPa</p>
-   <p>Humidity: ${roundToTwoDecimals(data.humidity)} %</p>
-   </body></html>`;
+  const sensorHtml = Object.entries(state)
+    .map(([k, v]) => buildSensorHtml(k, v))
+    .join('');
+
+  ctx.body = `<html><body>${sensorHtml}</body></html>`;
 });
 
 app.use(router.routes());

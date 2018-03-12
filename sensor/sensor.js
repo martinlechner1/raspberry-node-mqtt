@@ -7,14 +7,16 @@ wifi.save();
 var tinyMqtt = require('https://github.com/olliephillips/tinyMQTT/blob/master/tinyMQTT.min.js');
 var bme;
 var mqtt;
+var sensorId = '<yoursid>';
+var mqttIp = '<raspberryip>';
 
 function mqttConnect() {
   var options = {
     keep_alive: 270,
-    port: 1883,
+    port: 1883
   };
 
-  mqtt = tinyMqtt.create('<raspberryip>', options);
+  mqtt = tinyMqtt.create(mqttIp, options);
 
   // DEBUG
   mqtt.on('connected', function() {
@@ -36,7 +38,11 @@ function mqttConnect() {
 }
 
 function mqttSend() {
-  mqtt.publish('sensor', JSON.stringify(bme.getData()));
+  var message = JSON.stringify({
+    data: bme.getData(),
+    sid: sensorId
+  });
+  mqtt.publish('sensor', message);
 }
 
 function onInit() {
