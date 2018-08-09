@@ -39,12 +39,15 @@ network={
     key_mgmt=WPA-PSK
 }
 ```
+* Boot the pi and `ssh pi@<ipofpi>` Default password is `raspberry`.
+* Change the password `passwd`
 * Install Docker https://withblue.ink/2017/12/31/yes-you-can-run-docker-on-raspbian.html
+* You might need sudo for docker-compose installation
 * clone project on pi
-* `docker-compose up`
+* `sudo docker-compose up`
 * edit home-stats.service to match the folder to the project
-* copy home-stats.service to /etc/systemd/system/
-* `systemctl enable home-stats`
+* copy `home-stats.service` to `/etc/systemd/system/`
+* `sudo systemctl enable home-stats`
 
 ### ESP8266 NodeMCU Lua
 
