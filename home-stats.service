@@ -1,0 +1,17 @@
+# /etc/systemd/system/home-stats.service
+
+[Unit]
+Description=Docker Compose Application Service
+Requires=docker.service
+After=docker.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=/home/pi/raspberry-node-mqtt
+ExecStart=/usr/local/bin/docker-compose up --build -d
+ExecStop=/usr/local/bin/docker-compose down
+TimeoutStartSec=0
+
+[Install]
+WantedBy=multi-user.target
