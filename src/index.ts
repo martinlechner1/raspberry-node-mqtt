@@ -43,8 +43,8 @@ client.on('message', (topic, message) => {
 });
 
 const sensorMeta: { [sid: string]: string } = {
-  sensor_1: 'Meeting',
-  sensor_2: 'Fake Test Data',
+  sensor_1: 'Wohnzimmer',
+  sensor_2: 'Schlafzimmer',
   sensor_3: 'Keller',
 };
 
