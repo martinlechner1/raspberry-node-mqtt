@@ -1,7 +1,12 @@
 var wifi = require('Wifi');
-wifi.setHostname('iot1');
-wifi.connect('<yourwifi>', { password: '<yourwifipw>' });
-wifi.save();
+
+function wifiConnect() {
+  wifi.setHostname('iot1');
+  wifi.connect('<yourwifi>', { password: '<yourwifipw>' });
+  wifi.save();
+}
+
+wifiConnect();
 
 // Non tinyMQTT is too big for sensor rom
 var tinyMqtt = require('https://github.com/olliephillips/tinyMQTT/blob/master/tinyMQTT.min.js');
@@ -13,7 +18,7 @@ var mqttIp = '<raspberryip>';
 function mqttConnect() {
   var options = {
     keep_alive: 270,
-    port: 1883
+    port: 1883,
   };
 
   mqtt = tinyMqtt.create(mqttIp, options);
@@ -30,9 +35,7 @@ function mqttConnect() {
 
   mqtt.on('disconnected', function() {
     console.log('MQTT disconnected... reconnecting.');
-    setTimeout(function() {
-      mqtt.connect();
-    }, 1000);
+    mqtt.connect();
   });
   mqtt.connect();
 }
@@ -40,7 +43,7 @@ function mqttConnect() {
 function mqttSend() {
   var message = JSON.stringify({
     data: bme.getData(),
-    sid: sensorId
+    sid: sensorId,
   });
   mqtt.publish('sensor', message);
 }
@@ -52,6 +55,11 @@ function onInit() {
   mqttConnect();
 
   setInterval(function() {
+    var wifiStatus = wifi.getDetails().status;
+    if (wifiStatus !== 'connected' && wifiStatus !== 'connecting') {
+      wifiConnect();
+    }
+
     // We want a mqtt connection!
     if (!mqtt) {
       mqttConnect();
