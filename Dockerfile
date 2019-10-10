@@ -1,8 +1,8 @@
-FROM arm32v7/node:8.11
+FROM arm32v7/node:8.16
 WORKDIR /usr/src/app
 COPY package*.json ./
-RUN npm install
+RUN yarn install --frozen-lockfile
 COPY . .
-RUN npm run tsc
+RUN yarn run tsc
 EXPOSE 3000
-CMD [ "npm", "start" ]
+CMD [ "yarn", "start" ]
