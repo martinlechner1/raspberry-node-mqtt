@@ -1,8 +1,10 @@
 import * as Koa from 'koa';
 import * as Router from 'koa-router';
+import * as cors from '@koa/cors';
 import * as mqtt from 'mqtt';
 
 const app = new Koa();
+app.use(cors());
 const router = new Router();
 const mqttHost = process.env.MQTT_HOST || 'pinas';
 const client = mqtt.connect(`mqtt://${mqttHost}`);
