@@ -60,6 +60,10 @@ const buildSensorHtml = (sid: string, data: ISensorData) => {
   `;
 };
 
+router.get('/api/data', async ctx => {
+  ctx.body = state;
+});
+
 router.get('/*', async ctx => {
   const fiveMinutes = 5 * 60 * 1000;
   const sensorHtml = Object.entries(state)
