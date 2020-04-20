@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
 import {
-  pending,
   failure,
-  success,
-  RemoteData,
   initial,
+  pending,
+  RemoteData,
+  success,
 } from '@devexperts/remote-data-ts';
+import { useEffect, useState } from 'react';
 
 export const useData = () => {
   const [data, setData] = useState<RemoteData<Error, Data[]>>(initial);

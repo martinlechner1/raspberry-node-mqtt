@@ -1,5 +1,12 @@
+import {
+  Box,
+  Card,
+  CardContent,
+  Divider,
+  Paper,
+  Typography,
+} from '@material-ui/core';
 import React from 'react';
-import { Card, CardHeader, CardContent, Paper } from '@material-ui/core';
 
 const lookup = {
   sensor_1: 'Küche',
@@ -15,16 +22,22 @@ export const SensorView: React.SFC<Data> = ({
   timestamp,
 }) => {
   return (
-    <Paper key={id}>
+    <Paper key={id} elevation={3}>
       <Card>
-        <CardHeader title={lookup[id]}>Header</CardHeader>
         <CardContent>
-          <ul>
-            <li>Temperatur: {temp} C</li>
-            <li>Luftfeuchtigkeit: {humidity} %</li>
-            {pressure !== -1 ? <li>Luftdruck: {pressure} hPa</li> : null}
-            <li>Gemessen {new Date(timestamp).toLocaleString()}</li>
-          </ul>
+          <Typography variant="h5" color="primary">
+            {lookup[id]}
+          </Typography>
+          <Divider />
+          <Box mb={1} />
+          <Typography>Temperatur: {temp.toFixed(2)} ℃</Typography>
+          <Typography>Luftfeuchtigkeit: {humidity.toFixed(2)} %</Typography>
+          {pressure !== -1 ? (
+            <Typography>Luftdruck: {pressure.toFixed(2)} hPa</Typography>
+          ) : null}
+          <Typography>
+            Gemessen vor {Math.floor((Date.now() - timestamp) / 1000)} Sekunden
+          </Typography>
         </CardContent>
       </Card>
     </Paper>
