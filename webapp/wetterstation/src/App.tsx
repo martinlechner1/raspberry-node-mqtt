@@ -17,7 +17,7 @@ function App() {
           data => (
             <>
               {data.map(d => (
-                <Grid item xs={6} key={d.id}>
+                <Grid item xs={12} md={6} key={d.id}>
                   <SensorView {...d} />
                 </Grid>
               ))}

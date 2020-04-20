@@ -11,6 +11,7 @@ export const SensorView: React.SFC<Data> = ({
   id,
   temp,
   pressure,
+  humidity,
   timestamp,
 }) => {
   return (
@@ -20,7 +21,8 @@ export const SensorView: React.SFC<Data> = ({
         <CardContent>
           <ul>
             <li>Temperatur: {temp} C</li>
-            <li>Luftdruck: {pressure} hPa</li>
+            <li>Luftfeuchtigkeit: {humidity} %</li>
+            {pressure !== -1 ? <li>Luftdruck: {pressure} hPa</li> : null}
             <li>Gemessen {new Date(timestamp).toLocaleString()}</li>
           </ul>
         </CardContent>

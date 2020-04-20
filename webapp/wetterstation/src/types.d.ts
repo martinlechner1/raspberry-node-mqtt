@@ -3,5 +3,6 @@ interface Data {
   title: string;
   temp: number;
   pressure: number;
+  humidity: number;
   timestamp: number;
 }

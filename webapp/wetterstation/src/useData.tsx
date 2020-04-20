@@ -12,7 +12,7 @@ export const useData = () => {
   useEffect(() => {
     setData(pending);
     const fetchData = async () => {
-      await fetch('http://pinas:3000/api/data')
+      await fetch('/api/data')
         .then(res =>
           res.json().then(json => {
             setData(
