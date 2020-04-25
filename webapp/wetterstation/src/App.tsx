@@ -28,16 +28,15 @@ function App() {
   const { data } = useData();
   return (
     <ThemeProvider theme={theme}>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6" noWrap>
+            Skynet
+          </Typography>
+        </Toolbar>
+      </AppBar>
       <Container maxWidth="sm">
-        <Box mb={3}>
-          <AppBar position="static">
-            <Toolbar>
-              <Typography variant="h6" noWrap>
-                Skynet
-              </Typography>
-            </Toolbar>
-          </AppBar>
-        </Box>
+        <Box mb={3}></Box>
         <Grid container spacing={3}>
           {fold<Error, Data[], React.ReactElement>(
             () => <p>Initial</p>,

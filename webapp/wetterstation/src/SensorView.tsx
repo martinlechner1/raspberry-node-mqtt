@@ -9,9 +9,9 @@ import {
 import React from 'react';
 
 const lookup = {
-  sensor_1: 'Küche',
-  sensor_2: 'Keller',
-  sensor_3: 'Wohnzimmer',
+  sensor_1: 'Kitchen',
+  sensor_2: 'Outdoor',
+  sensor_3: 'Living Room',
 };
 
 export const SensorView: React.SFC<Data> = ({
