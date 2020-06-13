@@ -31,7 +31,7 @@ function App() {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" noWrap>
-            Skynet
+            Weather Station
           </Typography>
         </Toolbar>
       </AppBar>
